@@ -8,7 +8,8 @@ $ErrorActionPreference = 'Stop'
 Set-Location $PSScriptRoot
 
 $sdk = if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { "$env:LOCALAPPDATA\Android\Sdk" }
-$bt  = "$sdk\build-tools\34.0.0"
+# 36.0.0: the d8 in 34.0.0 crashes on JDK 21 class files (nameless MethodParameters entries).
+$bt  = "$sdk\build-tools\36.0.0"
 $jar = "$sdk\platforms\android-34\android.jar"
 $ks  = "$env:USERPROFILE\.android\debug.keystore"
 if (-not (Test-Path $jar)) { throw "android.jar not found at $jar" }
